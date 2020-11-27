@@ -1,0 +1,45 @@
+.login-page{
+  position: relative;
+  color: white;
+}
+// IMAGE STYLES
+.login-page__login-girl{
+  position: absolute;
+  top:0;
+  right: 0;
+  max-width: 500px;
+}
+
+// login and telegram container
+.login-page__inputs-container{
+  width: 474px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+// INPUT AND TELEGRAM BUTTON
+.login-page__input-block{
+  width: 304px;
+  height: 80px;
+  border-radius: 30px;
+}
+
+
+// TELEGRAM BUTTON
+.login-page__telegram-login-button{
+  background-color: rgba(160,186,255,0.5);
+  text-align: center;
+  margin-bottom: 51px;
+}
+// INPUT todo contact with Masha about design
+.login-page__group-input{
+  margin-left: auto;
+  background-color: rgba(255, 246, 156, 0.6);
+  border: none;
+  &:focus{
+    outline: none;
+  }
+}
+
+
