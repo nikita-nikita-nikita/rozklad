@@ -1,23 +1,20 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
     Switch,
-    Route,
-    Link,
     Redirect
 } from "react-router-dom";
+import PrivateRoute from "./privateRoute/privateRoute";
+import PublicRoute from "./publicRoute";
 import LoginPage from "../../pages/loginPage";
 
 const Routing:React.FC = () => {
     return (
-        <Router>
             <Switch>
-                <Route path="/" exact>
+                <PrivateRoute path="/" exact>
                     <Redirect to="/table"/>
-                </Route>
-                <Route path="/login" component={LoginPage}/>
+                </PrivateRoute>
+                <PublicRoute path="/login" component={LoginPage}/>
             </Switch>
-        </Router>
     )
 };
 

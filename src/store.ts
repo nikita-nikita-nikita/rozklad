@@ -5,6 +5,7 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import UserReducer, {UserStateType} from "./reducers/userReducer/reducer";
 
 const initialState = {};
 
@@ -18,10 +19,14 @@ const composedEnhancers = composeWithDevTools(
 );
 
 const reducers = {
-
+    user:UserReducer
 };
 
 const rootReducer = combineReducers(reducers);
+
+export type StateType = {
+    user:UserStateType
+}
 
 const store = createStore(
     rootReducer,

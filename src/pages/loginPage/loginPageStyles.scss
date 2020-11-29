@@ -1,13 +1,15 @@
-.login-page{
-  position: relative;
+.login-page-content{
+  display: flex;
+  justify-content: space-between;
   color: white;
+  width: 1440px;
+  margin: 0 auto;
 }
 // IMAGE STYLES
 .login-page__login-girl{
-  position: absolute;
   top:0;
   right: 0;
-  max-width: 500px;
+  width: calc(100% - 600px);
 }
 
 // login and telegram container
@@ -16,6 +18,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
+  align-self: flex-start;
 }
 
 // INPUT AND TELEGRAM BUTTON
@@ -23,12 +26,15 @@
   width: 304px;
   height: 80px;
   border-radius: 30px;
+  color: white;
+  font-size: 1.4rem;
+  box-sizing: border-box;
 }
 
 
 // TELEGRAM BUTTON
 .login-page__telegram-login-button{
-  background-color: rgba(160,186,255,0.5);
+  background-color: rgba(15,133,192,0.5);
   text-align: center;
   margin-bottom: 51px;
 }
@@ -39,6 +45,15 @@
   border: none;
   &:focus{
     outline: none;
+  }
+}
+
+// media
+
+@media (max-width: 1440px) {
+  .login-page-content{
+    width: 100%;
+    margin: 0;
   }
 }
 
