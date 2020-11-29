@@ -8,7 +8,10 @@ const LoginPage:React.FC = () => {
             <div className="login-page-content">
                 <div className="login-page__inputs-container">
                     <div className="login-page__input-block login-page__telegram-login-button">Login with telegram</div>
-                    <input className="login-page__input-block login-page__group-input"/>
+                    <form className="login-page__input-block login-page__group-input">
+                        <input className="login-page__input-block login-page__group-input" id="group-input" required/>
+                        <label htmlFor="group-input" id="group-input-label">Группа</label>
+                    </form>
                 </div>
                 <img className="login-page__login-girl" src={loginGirl}/>
             </div>

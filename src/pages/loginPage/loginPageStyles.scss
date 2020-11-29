@@ -41,15 +41,36 @@
 // INPUT todo contact with Masha about design
 .login-page__group-input{
   margin-left: auto;
-  background-color: rgba(255, 246, 156, 0.6);
-  border: none;
+  color: black;
+  position: relative;
   &:focus{
     outline: none;
   }
 }
 
-// media
+#group-input{
+  border-radius: 7px;
+  border: 1px solid blue;
+  box-sizing: border-box;
+  padding: 0 7px;
+  &:focus, &:valid{
+    &~#group-input-label{
+      top:0;
+      transform: translateY(calc(-15px)) translateX(-10px) scale(0.7);
+    }
+  }
+}
 
+#group-input-label{
+  background-color: white;
+  transition: 0.2s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 14px;
+}
+
+// media
 @media (max-width: 1440px) {
   .login-page-content{
     width: 100%;
