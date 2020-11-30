@@ -6,7 +6,7 @@ import MopsLogo from "../../assets/images/mops-logo.png";
 const Header:React.FC = () => {
     return (
         <header className="header">
-            <img className="header__mops__logo" src={MopsLogo}/><p>mops</p>
+            <img className="header__mops__logo" src={MopsLogo}/><p>mops.</p>
             <Switch>
                 <Route path="/timetable" component={() => (<>Hello</>)}/>
             </Switch>

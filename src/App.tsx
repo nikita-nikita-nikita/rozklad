@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from "./store";
@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 const App:React.FC = () => {
+    // useEffect(()=>{setUser},[])
   return (
       <Provider store={store}>
         <main className="main-app">

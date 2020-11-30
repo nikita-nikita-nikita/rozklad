@@ -6,9 +6,10 @@ export type User = {
     firstName: string;
     lastname : string;
     username : string;
-    group : string;
+    group?: string|null;
     token: string;
 }
+
 
 export type  UserStateType = {
     user: User|null;

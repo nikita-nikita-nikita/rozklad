@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "" // todo add a base url  and some extra stuff like tokens
+// todo url from env
+const baseURL = "http://185.65.244.35/api"
 
 const apiAxios = axios.create({
     baseURL
