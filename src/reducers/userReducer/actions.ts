@@ -1,6 +1,7 @@
 import {Dispatch} from 'redux';
 import {ActionTypes} from "./actionTypes";
 import {StateType} from "../../store";
+import {TelegramResponse} from "./reducer";
 const {SET_GROUP, SET_USER} = ActionTypes;
 
 const setGroup = (group:string) => async (dispatch:Dispatch, getState:()=>StateType) => {
@@ -10,16 +11,16 @@ const setGroup = (group:string) => async (dispatch:Dispatch, getState:()=>StateT
     })
 }
 // todo add redux-thunk action and change User type if that would be need
-// const setUser = () => async (dispatch:Dispatch) => {
-//     const user = await Get teleframm stuff
-//     dispatch({
-//         type: SET_USER,
-//         payload: user
-//     })
-// }
+const setUser = (user : TelegramResponse) => async (dispatch:Dispatch) => {
+    dispatch({
+        type: SET_USER,
+        payload: user
+    })
+}
 
 
 
 export {
-    setGroup
+    setGroup,
+    setUser
 }

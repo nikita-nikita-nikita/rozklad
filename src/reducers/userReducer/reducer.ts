@@ -9,7 +9,14 @@ export type User = {
     group?: string|null;
     token: string;
 }
-
+export type TelegramResponse = {
+    auth_date : number,
+    first_name : string,
+    hash : string,
+    id : number,
+    last_name : string,
+    username : string
+}
 
 export type  UserStateType = {
     user: User|null;
