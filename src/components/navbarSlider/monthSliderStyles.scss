@@ -1,0 +1,37 @@
+// SLIDER
+
+.months-slider{
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: 15px;
+  height: 44px;
+  background-color: #C4C4C4;
+  opacity: .3;
+}
+
+// ARROWS
+.slider-arrow{
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transition: .01s;
+  background: none;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    border-color: black;
+    filter: brightness(1%);
+  }
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
