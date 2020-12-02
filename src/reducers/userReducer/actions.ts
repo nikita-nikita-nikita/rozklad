@@ -1,10 +1,9 @@
 import {Dispatch} from 'redux';
+import GroupService from "../../api/services/groupService";
 import {ActionTypes} from "./actionTypes";
 import {StateType} from "../../store";
 import {TelegramResponse} from "./reducer";
-
 const {SET_GROUP, SET_USER} = ActionTypes;
-import GroupService from "../../api/services/groupService";
 
 const setGroup = (group: string) =>
     async (dispatch: Dispatch, getState: () => StateType) => {

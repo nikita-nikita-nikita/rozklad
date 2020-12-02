@@ -8,16 +8,21 @@ import TelegramButton from "../../components/TelegramButton"
 import {TelegramResponse} from "../../reducers/userReducer/reducer";
 import {useGroupService} from "../../api/context/groupContext";
 
+type LoginPageType = {
+    setGroup: (group:string) => void,
+    setUser: (user : TelegramResponse) => void
+}
 
 const LoginPage: React.FC = () => {
-    const onAuth= (user : TelegramResponse)=>{
-        // request to API
-    }
     const [groups, setGroups] = useState<string[]>([]);
+    const [inputValue, setInputValue] = useState<string>("");
     const groupService = useGroupService();
     useEffect(() => {
         groupService.getGroups().then(({data}) => setGroups(data))
     }, []);
+    const onAuth= (user : TelegramResponse)=>{
+        // request to API
+    }
     return (
         <div className="login-page">
             <div className="login-page-content">
@@ -34,9 +39,32 @@ const LoginPage: React.FC = () => {
                     />
                     <form className="login-page__group-choose-block">
                         <div className="login-page__input-block">
-                            <input className="login-page__input-block login-page__group-input" id="group-input"
-                                   required/>
+                            <input
+                                value={inputValue}
+                                className="login-page__input-block login-page__group-input"
+                                id="group-input"
+                                required
+                                onChange={({target} )=> {setInputValue(target.value.toLowerCase())}}/>
                             <label htmlFor="group-input" className="login-page__input-label">Група</label>
+                            {
+                                groups?.length && inputValue ?
+                                    <div className="group-hints">
+                                        {
+                                            groups.map(group =>
+                                                group.toLowerCase().slice(0, inputValue.length) === inputValue
+                                                    ?
+                                                    <button
+                                                        type="button"
+                                                        className="group-hint-button"
+                                                        onClick={() => setInputValue(group)}>
+                                                        {group}
+                                                    </button>
+                                                    : null
+                                            )
+                                        }
+                                    </div>
+                                    : null
+                            }
                         </div>
                         <button type="submit" className="login-page_submit-button">Далі</button>
                     </form>
