@@ -23,10 +23,10 @@
 
 // INPUT AND TELEGRAM BUTTON
 .login-page__input-block{
+  padding: 0 15px;
   width: 304px;
-  height: 80px;
-  border-radius: 30px;
-  color: white;
+  height: 60px;
+  border-radius: 10px;
   font-size: 1.4rem;
   box-sizing: border-box;
 }
@@ -38,18 +38,55 @@
   text-align: center;
   margin-bottom: 51px;
 }
+// INPUT container
+.login-page__group-choose-block{
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 // INPUT todo contact with Masha about design
 .login-page__group-input{
-  margin-left: auto;
-  background-color: rgba(255, 246, 156, 0.6);
-  border: none;
+  border: 2px solid #83888D;
   &:focus{
+    border-color: #1A73E8;
     outline: none;
+    &~.login-page__input-label{
+      color: #1A73E8;
+    }
+  }
+
+  &:focus,&:valid{
+    &~.login-page__input-label{
+      transform: scale(0.7) translateY(-60px) translateX(-8px);
+    }
   }
 }
 
-// media
+//INPUT LABEL
+.login-page__input-label{
+  transition: .2s;
+  font-size: 1.3rem;
+  color: #83888D;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  background-color: white;
+  transform: translateY(-50%);
+}
 
+//Submit button
+.login-page_submit-button{
+  height: 100%;
+  border: none;
+  background-color: #1A73E8;
+  color: white;
+  width: calc(100% - 340px);
+  border-radius: 5px;
+}
+// media
 @media (max-width: 1440px) {
   .login-page-content{
     width: 100%;
