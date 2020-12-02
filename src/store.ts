@@ -6,6 +6,7 @@ import {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import UserReducer, {UserStateType} from "./reducers/userReducer/reducer";
+import DateReducer, {DateStateType} from "./reducers/dateReducer/reducer";
 
 const initialState = {};
 
@@ -19,13 +20,15 @@ const composedEnhancers = composeWithDevTools(
 );
 
 const reducers = {
-    user:UserReducer
+    user:UserReducer,
+    date:DateReducer
 };
 
 const rootReducer = combineReducers(reducers);
 
 export type StateType = {
-    user:UserStateType
+    user:UserStateType,
+    date: DateStateType
 }
 
 const store = createStore(

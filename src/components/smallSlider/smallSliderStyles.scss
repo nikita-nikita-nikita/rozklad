@@ -1,20 +1,44 @@
 // SLIDER
-
-.months-slider{
+.small-slider{
   display: flex;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 10px;
   border-radius: 15px;
   height: 44px;
   background-color: #C4C4C4;
   opacity: .3;
 }
 
+//elements-container
+.slider-elements{
+  width: 200px;
+  overflow: hidden;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+//slider track
+.slider-track{
+  height: 100%;
+  display: flex;
+}
+
+//slider elem
+.slider-elem{
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  color: #5E89FE;
+}
+
 // ARROWS
 .slider-arrow{
-  border-width: 0 2px 2px 0;
+  cursor: pointer;
+  border-width: 0 1px 1px 0;
   display: inline-block;
-  padding: 3px;
+  padding: 7px;
   transition: .01s;
   background: none;
   &:focus{
