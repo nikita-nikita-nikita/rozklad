@@ -7,6 +7,7 @@ const {SET_GROUP, SET_USER} = ActionTypes;
 
 const setGroup = (group: string) =>
     async (dispatch: Dispatch, getState: () => StateType) => {
+    console.log(group);
         const groupService = new GroupService();
         groupService.saveGroup(group);
         dispatch({
