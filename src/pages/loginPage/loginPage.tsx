@@ -13,15 +13,21 @@ type LoginPageType = {
     setUser: (user : TelegramResponse) => void
 }
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<LoginPageType> = ({setGroup, setUser}) => {
     const [groups, setGroups] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
+    const [hintClicked, setHintClicked] = useState<boolean>(false);
     const groupService = useGroupService();
     useEffect(() => {
         groupService.getGroups().then(({data}) => setGroups(data))
     }, []);
     const onAuth= (user : TelegramResponse)=>{
         // request to API
+    }
+    const submitGroup = (event:React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (!groups.includes(inputValue)) alert("Ведіть валідну групу");
+        setGroup(inputValue.toLowerCase());
     }
     return (
         <div className="login-page">
@@ -37,9 +43,11 @@ const LoginPage: React.FC = () => {
                         lang="en"
                         dataOnauth={onAuth}
                     />
-                    <form className="login-page__group-choose-block">
+                    <form className="login-page__group-choose-block" onSubmit={submitGroup}>
                         <div className="login-page__input-block">
                             <input
+                                name="group-name"
+                                onFocus={() => setHintClicked(false)}
                                 value={inputValue}
                                 className="login-page__input-block login-page__group-input"
                                 id="group-input"
@@ -47,7 +55,7 @@ const LoginPage: React.FC = () => {
                                 onChange={({target} )=> {setInputValue(target.value.toLowerCase())}}/>
                             <label htmlFor="group-input" className="login-page__input-label">Група</label>
                             {
-                                groups?.length && inputValue ?
+                                groups?.length && inputValue && !hintClicked ? // a little but invert, but that's more logically
                                     <div className="group-hints">
                                         {
                                             groups.map(group =>
@@ -56,7 +64,10 @@ const LoginPage: React.FC = () => {
                                                     <button
                                                         type="button"
                                                         className="group-hint-button"
-                                                        onClick={() => setInputValue(group)}>
+                                                        onClick={() => {
+                                                            setInputValue(group);
+                                                            setHintClicked(true);
+                                                        }}>
                                                         {group}
                                                     </button>
                                                     : null
