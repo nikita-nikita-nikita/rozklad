@@ -12,7 +12,7 @@ const App:React.FC = () => {
     // useEffect(()=>{setUser},[])
   return (
       <Provider store={store}>
-          <GroupServiceContextProvider value={new GroupService()}>
+          <GroupServiceContextProvider value={GroupService}>
               <main className="main-app">
                   <Router>
                       <Header/>

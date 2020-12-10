@@ -1,5 +1,5 @@
 import {createContext, useContext} from "react";
-import GroupService from "../services/groupService";
+import {GroupService} from "../services/groupService";
 
 const GroupServiceContext = createContext<GroupService>(new GroupService());
 

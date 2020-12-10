@@ -7,6 +7,7 @@ import {
 import PrivateRoute from "./privateRoute/privateRoute";
 import PublicRoute from "./publicRoute";
 import LoginPage from "../../pages/loginPage";
+import TimetablePage from "../../pages/timetablePage";
 
 const Routing:React.FC = () => {
     return (
@@ -14,7 +15,7 @@ const Routing:React.FC = () => {
                 <Route path="/" exact>
                     <Redirect to="/timetable"/>
                 </Route>
-                <PrivateRoute path="/timetable" component={()=><h1>Timetable</h1>}/>
+                <PrivateRoute path="/timetable" component={TimetablePage}/>
                 <PublicRoute path="/login" component={LoginPage}/>
             </Switch>
     )
