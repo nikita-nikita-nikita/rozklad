@@ -1,5 +1,6 @@
 .day-cell__container{
   list-style: none;
+  width: 250px;
   height: 16.66%;
 }
 
@@ -13,7 +14,21 @@
 }
 
 .day-cell-active{
-  background-color: rgba(196, 196, 196, 0.3);
+  background-color: #EDEDED;
+  position: relative;
+  &:after{
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 193px;
+    width: 82px;
+    height: 82px;
+    display: block;
+    z-index: 111;
+    border-radius: 20px;
+    transform: rotate(45deg);
+    background-color: #EDEDED;
+  }
 }
 
 .day-cell__content{
