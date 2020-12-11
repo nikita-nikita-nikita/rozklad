@@ -3,16 +3,19 @@ import "./stylesTimetable.scss";
 import VerticalScroll from "../../components/verticalScroll";
 
 const Timetable = () => {
-    return (
-        <>
-            <aside>
-                Aside
-            </aside>
-            <main className="timetable-days-navigator">
-              <VerticalScroll />
-            </main>
-        </>
-    )
+  return (
+    <div className="timetable-page">
+      <aside>
+        Aside
+      </aside>
+      <main className="timetable-days-navigator">
+        <VerticalScroll/>
+      </main>
+      <aside>
+        Aside
+      </aside>
+    </div>
+  )
 }
 
 export default Timetable;
