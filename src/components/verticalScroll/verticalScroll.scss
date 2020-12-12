@@ -1,6 +1,30 @@
 .vertical-scroll-wrap{
   height: 798px;
   overflow: hidden;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
   width: 330px;
+}
+
+.vertical-scroll__pointer{
+  position: absolute;
+  top: 359px;
+  width: 250px;
+  height: 100px;
+  background-color: rgba(196, 196, 196, 0.3);
+  border-radius: 20px;
+  &:after{
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 9px;
+    left: 193px;
+    width: 82px;
+    height: 82px;
+    display: block;
+    border-radius: 20px;
+    transform: rotate(45deg);
+    background-color: #EDEDED;
+  }
 }

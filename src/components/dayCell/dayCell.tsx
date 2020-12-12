@@ -8,7 +8,7 @@ type DayCellType = {
 const DayCell: React.FC<DayCellType> = ({day}) => {
   return (
     <li key={day.date.getTime()} className={`day-cell__container`}>
-      <div className={`day-cell${day.isActive ? ' day-cell-active' : ""}`}>
+      <div className="day-cell">
         <div className="day-cell__content">
           <p className="day-cell__day-name">{DateService.getWeekdayName(day.date.getDay())}</p>
           <p className="day-cell__date">{day.date.getDate()}</p>

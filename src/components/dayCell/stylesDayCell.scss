@@ -2,6 +2,7 @@
   list-style: none;
   width: 250px;
   height: 133px;
+  min-height: 133px;
 }
 
 .day-cell{
@@ -13,22 +14,6 @@
   border-radius: 20px;
 }
 
-.day-cell-active{
-  background-color: #EDEDED;
-  position: relative;
-  &:after{
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    left: 193px;
-    width: 82px;
-    height: 82px;
-    display: block;
-    border-radius: 20px;
-    transform: rotate(45deg);
-    background-color: #EDEDED;
-  }
-}
 
 .day-cell__content{
   width: calc(50% - 4px);
