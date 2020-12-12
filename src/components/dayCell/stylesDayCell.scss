@@ -17,6 +17,20 @@
 
 .day-cell__content{
   width: calc(50% - 4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.day-cell__date{
+  font-size: 48px;
+  margin: 0;
+}
+.day-cell__day-name{
+  margin: 0;
+  font-size: 18px;
 }
 
 .day-cell__vertical-line{

@@ -2,7 +2,7 @@ import React from "react";
 import "./stylesTimetable.scss";
 import VerticalScroll from "../../components/verticalScroll";
 
-const Timetable = () => {
+const Timetable:React.FC = () => {
   return (
     <div className="timetable-page">
       <aside>
