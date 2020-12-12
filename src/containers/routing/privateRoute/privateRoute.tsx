@@ -11,7 +11,7 @@ const PrivateRoute:React.FC<PrivateRouteProps> = ({group, ...props}) =>
     !group ? <Redirect to="/login"/> : <Route {...props}/>;
 
 const mapStateToProps:MapStateToProps<{group:string|null},any,StateType> = ({user} )=> ({
-    group :user.group
+    group: user.group
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

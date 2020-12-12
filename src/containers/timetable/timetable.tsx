@@ -1,6 +1,7 @@
 import React from "react";
 import "./stylesTimetable.scss";
 import VerticalScroll from "../../components/verticalScroll";
+import DaySchedule from "../daySchedule";
 
 const Timetable:React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Timetable:React.FC = () => {
       </aside>
       <main className="timetable-days-navigator">
         <VerticalScroll/>
+        <DaySchedule/>
       </main>
       <aside>
         Aside
