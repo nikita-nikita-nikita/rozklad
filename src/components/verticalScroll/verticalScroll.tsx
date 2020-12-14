@@ -29,7 +29,6 @@ const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decr
 
 
   const scroll = (vector: 1|-1, behavior: "smooth"|"auto" = "smooth") => {
-    console.log(vector, behavior)
     scrollRef.current.scrollTo({
       top: 133*vector,
       behavior
@@ -51,7 +50,6 @@ const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decr
       scroll(1);
     }
   }
-  // if(scrollRef.current)
 
   return (
     <div className="vertical-scroll">
