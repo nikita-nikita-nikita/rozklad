@@ -1,26 +1,19 @@
 import React from "react";
 import "./stylesDaySchedule.scss";
 import DayScheduleSubject from "../DayScheduleSubject";
+import {Lesson} from "../../../containers/daySchedule/dayShedule";
 
 type DayScheduleRenderType = {
-  subjects: {
-    lesson:{
-      name: string
-      teacher: string
-    }
-    empty?:boolean
-    active?:boolean
-    timeStart: string
-  }[]
+  subjects: Lesson[]
 }
 
 const DayScheduleRender:React.FC<DayScheduleRenderType> = ({subjects}) => {
   return (
     <div className="day-schedule">
       {
-        subjects.map((subject) => <DayScheduleSubject {...subject}/>)
+        subjects.map(lesson =>
+          <DayScheduleSubject lesson={lesson}/>)
       }
-
     </div>
   )
 }

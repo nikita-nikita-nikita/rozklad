@@ -1,11 +1,7 @@
 import {Subject} from "../../containers/daySchedule/dayShedule";
+import {Lesson} from "../../containers/daySchedule/dayShedule";
 
 export default class SubjectService{
-  // but day will be just from 1 to 6
-  constructor(private subjects:Subject[], private day:0|1|2|3|4|5|6, private week:1|2) {}
-
-  private filterByDate = () =>
-    this.subjects.filter( ({week, day}) => week===this.week &&day===day);
 
   static LessonsTimesStarts = {
     "08:30:00":0,
@@ -14,12 +10,31 @@ export default class SubjectService{
     "14:15:00":3,
     "16:10:00":4,
   }
-  //
-  // public getRenderedLessons = () => {
-  //   const lessons:{name:string,teachers:string}[] = [];
-  //   this.subjects.forEach(({subject, timeStart, type}) => {
-  //     lessons[SubjectService.LessonsTimesStarts[timeStart]].name += subject.name + " " + type + ";"
-  //   })
-  // }
+
+  // but day will be just from 1 to 6
+  constructor(private subjects:Subject[], private day:1|2|3|4|5|6, private week:1|2) {}
+
+  public setSubjects = (subjects:Subject[]) => {
+  this.subjects = subjects;
+}
+
+
+  private filterByDate = ():Subject[]  =>
+    this.subjects.filter( ({week, day}) => week===this.week &&day===day);
+
+  public getRenderedLessons = (): Lesson[] => {
+    const lessons: Lesson[] = Object.keys(SubjectService.LessonsTimesStarts)
+      .map<Lesson>( (timeStart) => ({subjects:[],timeStart}));
+
+    this.filterByDate().forEach(
+      ({type, subjectId:id, timeStart,
+         subject:{name, teachers:teacher}}) =>
+        lessons[SubjectService.LessonsTimesStarts[timeStart]].subjects.push({name: type?type+". ":"" + name, teacher, id})
+    );
+
+    lessons.forEach( lesson => {lesson.empty = Boolean(lesson.subjects.length)})
+
+    return lessons;
+  }
 
 }
