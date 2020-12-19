@@ -1,0 +1,46 @@
+.header__navbar-dropdown {
+    background-color: rgba(239, 239, 239, .7);
+    width: 84px;
+    height: 44px;
+    border: none;
+    border-radius: 15px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #5E89FE;
+    cursor: pointer;
+
+    img {
+        width: 35px;
+        border-radius: 50%;
+    }
+
+    .header__navbar-body {
+        height: 44px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .icon {
+        transform: rotate(45deg);
+        cursor: pointer;
+        border-color: #5E89FE;
+        opacity: .7;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 5px;
+        transition: .01s;
+        background: none;
+        position: relative;
+        bottom: 2px;
+        margin: 0;
+        &:focus{
+            outline: none;
+        }
+        &:hover{
+            border-color: black;
+            filter: brightness(1%);
+        }
+    }
+}

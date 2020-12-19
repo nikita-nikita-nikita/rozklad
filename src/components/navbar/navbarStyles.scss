@@ -1,5 +1,25 @@
 .header__navbar{
   flex-grow: 1;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 2rem 0 15rem;
+
+  &-btn {
+    width: 145px;
+    line-height: 44px;
+    border: none;
+    border-radius: 15px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #5E89FE;
+    cursor: pointer;
+    opacity: .7;
+  }
+
+  .icon {
+    margin-right: 20px;
+  }
 }
+
