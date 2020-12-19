@@ -10,37 +10,131 @@
     color: #5E89FE;
     cursor: pointer;
 
-    img {
-        width: 35px;
-        border-radius: 50%;
-    }
+
 
     .header__navbar-body {
         height: 44px;
         display: flex;
         justify-content: space-around;
         align-items: center;
+
+        img {
+            width: 35px;
+            border-radius: 50%;
+        }
+
+        .icon {
+            transform: rotate(45deg);
+            cursor: pointer;
+            border-color: #5E89FE;
+            opacity: .7;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 5px;
+            transition: .01s;
+            background: none;
+            position: relative;
+            bottom: 2px;
+            margin: 0;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                border-color: black;
+                filter: brightness(1%);
+            }
+        }
+
+        .header__navbar-body__name{
+            display: none;
+        }
     }
 
-    .icon {
-        transform: rotate(45deg);
-        cursor: pointer;
-        border-color: #5E89FE;
-        opacity: .7;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 5px;
-        transition: .01s;
-        background: none;
-        position: relative;
-        bottom: 2px;
-        margin: 0;
-        &:focus{
-            outline: none;
+    .header__navbar-buttons{
+        display: none;
+    }
+}
+
+.header__navbar-body-opened{
+    width: 350px;
+    height: 44px;
+    //position: relative;
+
+    .header__navbar-dropdown__container{
+        position: absolute;
+        width: 350px;
+        background-color: rgba(239, 239, 239, .7);
+        border-radius: 15px;
+
+        .header__navbar-body{
+            height: 90px;
+
+            img {
+                width: 70px;
+                border-radius: 50%;
+
+            }
+
+            .icon {
+                transform: rotate(225deg);
+            }
+
+            .header__navbar-body__name{
+                display: block;
+
+                p{
+                    padding: 0;
+                    margin: 0;
+                }
+
+                p:first-child{
+                    font-size: 2rem;
+                }
+
+                p:last-child{
+                    font-size: 0.8rem;
+                    color: #B3B2B2;
+                }
+            }
         }
-        &:hover{
-            border-color: black;
-            filter: brightness(1%);
+
+        .header__navbar-buttons{
+            display: block;
+
+            button{
+                width: 100%;
+                background-color: rgba(0,0,0,0);
+                border: 0;
+                padding: 15px 15px 15px 50px;
+                font-size: 17px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                svg{
+                    margin-right: 10px;
+                    width: 30px;
+                    height: 30px;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    background-color: #e5e5e5;
+                }
+            }
+
+            .logout{
+                display: flex;
+                justify-content: flex-end;
+                padding: 15px;
+
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
         }
     }
+
+
+
 }
