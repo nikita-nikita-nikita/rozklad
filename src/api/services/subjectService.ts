@@ -20,14 +20,14 @@ export default class SubjectService {
     this.subjects = subjects;
   }
 
-  public getLessons = (): Lesson[] => Object.keys(SubjectService.LessonsTimesStarts)
-    .map<Lesson>((timeStart) => ({subjects: [], timeStart}));
+  static getLessons = (): Lesson[] => Object.keys(SubjectService.LessonsTimesStarts)
+    .map<Lesson>((timeStart) => ({subjects: [], timeStart, empty:true}));
 
   private filterByDate = (): Subject[] =>
     this.subjects.filter(({week, dayOfWeek}) => this.day === dayOfWeek && week === this.week);
 
   public getRenderedLessons = (): Lesson[] => {
-    const lessons: Lesson[] = this.getLessons()
+    const lessons: Lesson[] = SubjectService.getLessons();
 
     const filtered = this.filterByDate();
 

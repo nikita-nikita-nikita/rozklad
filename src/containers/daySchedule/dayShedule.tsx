@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./stylesDayShedule.scss";
 import {connect, MapStateToProps} from "react-redux";
-import {AxiosResponse} from "axios";
+import axios,{AxiosResponse, CancelTokenSource} from "axios";
 import useSWR from 'swr'
 import {StateType} from "../../store";
 import {setGroup} from "../../reducers/userReducer/actions";
@@ -36,27 +36,72 @@ export type Subject = {
 
 export type Lesson = { subjects:{ name: string, teacher: string, id: string }[], timeStart: string, active?:boolean, empty?:boolean};
 
-const DaySchedule:React.FC<DayScheduleType> = ({group, setGroup, date}) => {
-  const { data, error } = useSWR<AxiosResponse<Subject[]>>(`/groups/${group}/timetable`, apiAxios);
-  const {data:weekData, error:weekError} =
-    useSWR<AxiosResponse<{weekNumber:1|2}>>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`, apiAxios);
+type UseGroupsApi = (data:{group:string, date:Date}) => {error:boolean, lessons:Lesson[]}
+
+const useGroupsApi:UseGroupsApi = ({group, date}) => {
   const SubjectServiceClass = useSubjectService();
-  if(error||weekError) {
-    // todo mb handle server errors
-    setGroup('');
-    return <></>
+  const [subjects, setSubjects] = useState<Subject[]|null>(null);
+  const [lessons, setLessons] = useState<Lesson[]>(SubjectServiceClass.getLessons());
+  const [weekNumber, setWeekNumber] = useState<1|2|null>(null);
+  const [error, setError] = useState<boolean>(false);
+  const [firstLoaded, setFirstLoading] =
+    useState<{week:boolean, subjects:boolean}>({week:false, subjects: false})
+  const handleError = () => setError(true);
+  // componentDidMount
+  // todo finish subjects management 
+  useEffect(() => {
+    apiAxios.get<Subject[]>(`/groups/${group}/timetable`)
+      .then( ({data}) => {
+        setSubjects(data);
+        setFirstLoading( prev => ({...prev, subjects: true}));
+      })
+      .catch(handleError)
+    apiAxios.get<{weekNumber:1|2}>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`)
+      .then( ({data:{weekNumber}}) => {
+        setWeekNumber(weekNumber);
+        setFirstLoading( prev => ({...prev, week: true}));
+      })
+      .catch(handleError)
+  }, []);
+
+  // componentDidUpdate
+  useEffect(() => {
+    if(firstLoaded.week) {
+      apiAxios.get<{ weekNumber: 1 | 2 }>(`/week/${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`)
+        .then(({data: {weekNumber}}) => setWeekNumber(weekNumber))
+        .catch(handleError)
+    }
+  }, [date.getTime()]);
+  if(subjects&&weekNumber) {
+
   }
+  return ({
+    lessons,
+    error
+  })
+}
 
-  if(!data||!weekData)
-     return <div className="dat-schedule">Loading...</div>;
+const DaySchedule:React.FC<DayScheduleType> = ({group, setGroup, date}) => {
+  // const { data, error } = useSWR<AxiosResponse<Subject[]>>(`/groups/${group}/timetable`, apiAxios);
+  // const {data:weekData, error:weekError} = useSWR<AxiosResponse<{weekNumber:1|2}>>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`, apiAxios);
 
-  const SubjectService = new SubjectServiceClass(data.data, date.getDay() as 1|2|3|4|5|6, weekData.data.weekNumber);
+  const {lessons, error} = useGroupsApi({group, date});
+  // if(error||weekError) {
+  //   // todo mb handle server errors
+  //   setGroup('');
+  //   return <></>
+  // }
 
-  const filteredSubjects = SubjectService.getRenderedLessons();
+  // if(!subjects)
+  //    return <div className="dat-schedule">Loading...</div>;
+  //
+  // const SubjectService = new SubjectServiceClass(data.data, date.getDay() as 1|2|3|4|5|6, weekData.data.weekNumber);
 
-  console.log(filteredSubjects);
+  // const filteredSubjects = SubjectService.getRenderedLessons();
 
-  return <DayScheduleRender subjects={filteredSubjects}/>;
+  // console.log(filteredSubjects);
+
+  return <DayScheduleRender subjects={lessons}/>;
 
 }
 

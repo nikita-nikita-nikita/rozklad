@@ -18,7 +18,7 @@ const DayScheduleSubject:React.FC<DayScheduleSubjectPropsType> = (
         subjects.map(({name, teacher}) => (
           <div className="day-schedule__subject">
             <div className="day-schedule__name">{name}.</div>
-            <div className="day-schedule__teacher">{teacher}.</div>
+            <div className="day-schedule__teacher">{teacher}</div>
           </div>
         ))
       }
