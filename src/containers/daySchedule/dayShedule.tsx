@@ -20,7 +20,7 @@ export type Subject = {
   subjectId:string
   timeStart:"08:30:00"|"10:25:00"|"12:20:00"|"14:15:00"|"16:10:00"
   week:1|2
-  day: 1|2|3|4|5|6
+  dayOfWeek: 1|2|3|4|5|6
   type:string
   subject:{
     id: string,
@@ -41,7 +41,6 @@ const DaySchedule:React.FC<DayScheduleType> = ({group, setGroup, date}) => {
   const {data:weekData, error:weekError} =
     useSWR<AxiosResponse<{weekNumber:1|2}>>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`, apiAxios);
   const SubjectServiceClass = useSubjectService();
-  console.log(data, error, weekData, weekError);
   if(error||weekError) {
     // todo mb handle server errors
     setGroup('');

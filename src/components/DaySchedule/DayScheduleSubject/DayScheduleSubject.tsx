@@ -10,6 +10,7 @@ const DayScheduleSubject:React.FC<DayScheduleSubjectPropsType> = (
   {
     lesson:{subjects, timeStart, active, empty}
   }) => {
+
   return (
     <div className={`day-schedule${active? ' day-schedule--active':''}${empty ? ' day-schedule--empty' : ''}`}>
       <div className="day-schedule__time">{timeStart}</div>

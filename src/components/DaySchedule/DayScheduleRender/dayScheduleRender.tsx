@@ -9,7 +9,7 @@ type DayScheduleRenderType = {
 
 const DayScheduleRender:React.FC<DayScheduleRenderType> = ({subjects}) => {
   return (
-    <div className="day-schedule">
+    <div className="day-schedule-container">
       {
         subjects.map(lesson =>
           <DayScheduleSubject lesson={lesson}/>)
