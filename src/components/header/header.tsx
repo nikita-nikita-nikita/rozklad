@@ -8,7 +8,7 @@ const Header:React.FC = () => {
     return (
         <header className="header">
             <div className="header__mops__logo">
-                <img  height="100%" src={MopsLogo}/><p>mops.</p>
+                <img height="100%" src={MopsLogo} alt='mops'/><p>mops.</p>
             </div>
             <Switch>
                 <Route path="/timetable" component={Navbar}/>
