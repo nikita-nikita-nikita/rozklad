@@ -42,39 +42,43 @@ const useGroupsApi:UseGroupsApi = ({group, date}) => {
   const SubjectServiceClass = useSubjectService();
   const [subjects, setSubjects] = useState<Subject[]|null>(null);
   const [lessons, setLessons] = useState<Lesson[]>(SubjectServiceClass.getLessons());
-  const [weekNumber, setWeekNumber] = useState<1|2|null>(null);
+  // const [weekNumber, setWeekNumber] = useState<1|2|null>(null);
   const [error, setError] = useState<boolean>(false);
   const [firstLoaded, setFirstLoading] =
-    useState<{week:boolean, subjects:boolean}>({week:false, subjects: false})
+    useState<boolean>(false)
   const handleError = () => setError(true);
   // componentDidMount
-  // todo finish subjects management 
-  useEffect(() => {
-    apiAxios.get<Subject[]>(`/groups/${group}/timetable`)
-      .then( ({data}) => {
-        setSubjects(data);
-        setFirstLoading( prev => ({...prev, subjects: true}));
-      })
-      .catch(handleError)
+  // todo finish subjects management
+  const handleWeekResponse = (subjects:Subject[]):Promise<any> =>
     apiAxios.get<{weekNumber:1|2}>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`)
       .then( ({data:{weekNumber}}) => {
         setWeekNumber(weekNumber);
         setFirstLoading( prev => ({...prev, week: true}));
       })
       .catch(handleError)
+
+  useEffect(() => {
+    apiAxios.get<Subject[]>(`/groups/${group}/timetable`)
+      .then( ({data}) => {
+        setSubjects(data);
+        setFirstLoading( true);
+        getWeekNumber(data)
+      })
+      .catch(handleError)
+    // apiAxios.get<{weekNumber:1|2}>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`)
+    //   .then( ({data:{weekNumber}}) => {
+    //     setWeekNumber(weekNumber);
+    //     setFirstLoading( prev => ({...prev, week: true}));
+    //   })
+    //   .catch(handleError)
   }, []);
 
   // componentDidUpdate
   useEffect(() => {
-    if(firstLoaded.week) {
-      apiAxios.get<{ weekNumber: 1 | 2 }>(`/week/${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`)
-        .then(({data: {weekNumber}}) => setWeekNumber(weekNumber))
-        .catch(handleError)
+    if(firstLoaded) {
+      getWeekNumber(s)
     }
   }, [date.getTime()]);
-  if(subjects&&weekNumber) {
-
-  }
   return ({
     lessons,
     error
