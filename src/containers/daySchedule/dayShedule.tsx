@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./stylesDayShedule.scss";
 import {connect, MapStateToProps} from "react-redux";
-import axios,{AxiosResponse, CancelTokenSource} from "axios";
-import useSWR from 'swr'
 import {StateType} from "../../store";
 import {setGroup} from "../../reducers/userReducer/actions";
 import {apiAxios} from "../../config/axiosConfig";
@@ -81,14 +79,7 @@ const useGroupsApi:UseGroupsApi = ({group, date}) => {
 }
 
 const DaySchedule:React.FC<DayScheduleType> = ({group, setGroup, date}) => {
-  // const { data, error } = useSWR<AxiosResponse<Subject[]>>(`/groups/${group}/timetable`, apiAxios);
-  // const {data:weekData, error:weekError} = useSWR<AxiosResponse<{weekNumber:1|2}>>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`, apiAxios);
-
   const {lessons, error} = useGroupsApi({group, date});
-  // useEffect(() => {
-  //
-  //   setGroup('');
-  // }, [])
   if(error) {
     setGroup('');
     return <></>

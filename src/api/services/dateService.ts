@@ -41,8 +41,8 @@ export default class DateService {
   }
 
   public getDisplayedDays = (): Day[] => [
-    ...this.getDaysAroundActive(3,-1),
+    ...this.getDaysAroundActive(2,-1),
     {date:this.date, isActive:true},
-    ...this.getDaysAroundActive(4,1)
+    ...this.getDaysAroundActive(3,1)
   ];
 }

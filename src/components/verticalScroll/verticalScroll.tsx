@@ -22,42 +22,34 @@ const {UP, DOWN, NEUTRAL} = DIRECTION;
 
 const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decrementDate}) => {
   // down = 1 ; up = -1;
-  const [direction, setDirection] = useState<DIRECTION>(NEUTRAL);
   const dateService = new DateService(date);
-  const days: Day[] = dateService.getDisplayedDays();
+  // const [days, setDays] = useState<Day[]>(dateService.getDisplayedDays());
   const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-
-  const scroll = (vector: 1|-1, behavior: "smooth"|"auto" = "smooth") => {
-    scrollRef.current.scrollTo({
-      top: 133*vector,
-      behavior
-    });
-  }
-
-  useEffect(() => {
-    scroll(1, "auto")
-  }, []);
-
+  // const scroll = (vector: 1|-1|0|2|-2, behavior: "smooth"|"auto" = "smooth") => {
+  //   scrollRef.current.scrollTo({
+  //     top: 133*vector,
+  //     behavior
+  //   });
+  // }
 
   const onWheel = ({deltaY}: WheelEvent<HTMLDivElement>) => {
     if (deltaY > 0) {
-      scroll(1);
       incrementDate();
     } else {
-      scroll(-1);
       decrementDate();
-      scroll(1);
     }
   }
+
+  console.log('render');
 
   return (
     <div className="vertical-scroll">
       <div className="vertical-scroll-wrap" onWheel={onWheel} ref={scrollRef}>
         <div className="vertical-scroll__pointer"/>
         {
-          days.map(day => (
-            <DayCell day={day} key={day.date.getDate()}/>
+          dateService.getDisplayedDays().map(day => (
+            <DayCell day={day}/>
           ))
         }
       </div>

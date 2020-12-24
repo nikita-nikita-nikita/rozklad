@@ -12,9 +12,7 @@ export default class SubjectService {
   }
 
   // but day will be just from 1 to 6
-  constructor(private subjects: Subject[], private day: 1 | 2 | 3 | 4 | 5 | 6, private week: 1 | 2) {
-    console.log(subjects)
-  }
+  constructor(private subjects: Subject[], private day: 1 | 2 | 3 | 4 | 5 | 6, private week: 1 | 2) {}
 
   public setSubjects = (subjects: Subject[]) => {
     this.subjects = subjects;
@@ -30,7 +28,6 @@ export default class SubjectService {
     const lessons: Lesson[] = SubjectService.getLessons();
 
     const filtered = this.filterByDate();
-    console.log(filtered, 'filtered', this.day, this.week, this.subjects)
 
     filtered.forEach(
       ({
@@ -48,8 +45,6 @@ export default class SubjectService {
     lessons.forEach(lesson => {
       lesson.empty = !Boolean(lesson.subjects.length)
     });
-
-    console.log(lessons, 'result')
 
     return lessons;
   }

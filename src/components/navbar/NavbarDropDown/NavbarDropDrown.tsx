@@ -1,12 +1,15 @@
 import React, {useState} from "react";
+import './NavbarDropDown.scss';
+import {connect} from "react-redux";
+import {logOut} from "../../../reducers/userReducer/actions";
+import profile from '../../../assets/images/profile.jpg';
 
-import './NavbarDropDown.scss'
+type NavbarDropDownType = {
+  logOut: ()=>void
+}
 
-import profile from '../../../assets/images/profile.jpg'
-
-const NavbarDropDown: React.FC = () => {
+const NavbarDropDown: React.FC<NavbarDropDownType> = ({logOut}) => {
     const [isOpen, setIsOpen] = useState(false);
-
     return (
         <div id='header__navbar-dropdown'
              className={`header__navbar-dropdown ${isOpen ? 'header__navbar-body-opened' : ''}`}>
@@ -44,11 +47,8 @@ const NavbarDropDown: React.FC = () => {
                             <path d="M7 5V3" stroke="#FA742B" stroke-linecap="round"/>
                             <path d="M17 5V3" stroke="#FA742B" stroke-linecap="round"/>
                         </svg>
-
-
                         calendar view
                     </button>
-
                     <button>
                         <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
@@ -56,11 +56,8 @@ const NavbarDropDown: React.FC = () => {
                                   d="M9 1C12.3137 1 15 3.68624 15 6.99995C15 8.9131 15 10.8341 15 12C15 15 17 16 17 16L1 16C1 16 3 15 3 12C3 10.8341 3 8.9131 3 6.99995C3 3.68624 5.68629 1 9 1V1Z"
                                   stroke="#5E89FE" stroke-linejoin="round"/>
                         </svg>
-
-
                         disable notification
                     </button>
-
                     <button>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
@@ -74,12 +71,9 @@ const NavbarDropDown: React.FC = () => {
                                   d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
                                   stroke="#F13C20"/>
                         </svg>
-
-
                         found a mistake? write us
                     </button>
-
-                    <div className='logout'>
+                    <div className='logout' onClick={logOut}>
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -95,4 +89,8 @@ const NavbarDropDown: React.FC = () => {
     )
 };
 
-export default NavbarDropDown;
+const mapDispatchToProps = {
+  logOut
+}
+
+export default connect(null, mapDispatchToProps)(NavbarDropDown);

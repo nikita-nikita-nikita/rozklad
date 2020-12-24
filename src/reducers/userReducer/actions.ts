@@ -14,6 +14,11 @@ const setGroup = (group: string) =>
             payload: group
         })
     }
+
+// its just set group to ""
+const logOut = () =>
+  async (dispatch: Dispatch, getState: () => StateType) => setGroup("")(dispatch, getState);
+
 // todo add redux-thunk action and change User type if that would be need
 const setUser = (user: TelegramResponse) => async (dispatch: Dispatch) => {
     dispatch({
@@ -25,5 +30,6 @@ const setUser = (user: TelegramResponse) => async (dispatch: Dispatch) => {
 
 export {
     setGroup,
-    setUser
+    setUser,
+    logOut
 }
