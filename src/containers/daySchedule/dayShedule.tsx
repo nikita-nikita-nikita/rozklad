@@ -47,36 +47,31 @@ const useGroupsApi:UseGroupsApi = ({group, date}) => {
   const [firstLoaded, setFirstLoading] =
     useState<boolean>(false)
   const handleError = () => setError(true);
+
   // componentDidMount
-  // todo finish subjects management
-  const handleWeekResponse = (subjects:Subject[]):Promise<any> =>
-    apiAxios.get<{weekNumber:1|2}>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`)
-      .then( ({data:{weekNumber}}) => {
-        setWeekNumber(weekNumber);
-        setFirstLoading( prev => ({...prev, week: true}));
+  const handleWeekResponse = (subjects:Subject[]):void => {
+    apiAxios.get<{ weekNumber: 1 | 2 }>(`/week/${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`)
+      .then(({data: {weekNumber}}) => {
+        const subjectService = new SubjectServiceClass(subjects, date.getDay() as 1 | 2 | 3 | 4 | 5 | 6, weekNumber);
+        setLessons(subjectService.getRenderedLessons())
       })
       .catch(handleError)
+  }
 
   useEffect(() => {
     apiAxios.get<Subject[]>(`/groups/${group}/timetable`)
       .then( ({data}) => {
         setSubjects(data);
         setFirstLoading( true);
-        getWeekNumber(data)
+        handleWeekResponse(data)
       })
       .catch(handleError)
-    // apiAxios.get<{weekNumber:1|2}>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`)
-    //   .then( ({data:{weekNumber}}) => {
-    //     setWeekNumber(weekNumber);
-    //     setFirstLoading( prev => ({...prev, week: true}));
-    //   })
-    //   .catch(handleError)
   }, []);
 
   // componentDidUpdate
   useEffect(() => {
     if(firstLoaded) {
-      getWeekNumber(s)
+      handleWeekResponse(subjects as Subject[])
     }
   }, [date.getTime()]);
   return ({
@@ -90,23 +85,15 @@ const DaySchedule:React.FC<DayScheduleType> = ({group, setGroup, date}) => {
   // const {data:weekData, error:weekError} = useSWR<AxiosResponse<{weekNumber:1|2}>>(`/week/${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`, apiAxios);
 
   const {lessons, error} = useGroupsApi({group, date});
-  // if(error||weekError) {
-  //   // todo mb handle server errors
-  //   setGroup('');
-  //   return <></>
-  // }
-
-  // if(!subjects)
-  //    return <div className="dat-schedule">Loading...</div>;
+  // useEffect(() => {
   //
-  // const SubjectService = new SubjectServiceClass(data.data, date.getDay() as 1|2|3|4|5|6, weekData.data.weekNumber);
-
-  // const filteredSubjects = SubjectService.getRenderedLessons();
-
-  // console.log(filteredSubjects);
-
+  //   setGroup('');
+  // }, [])
+  if(error) {
+    setGroup('');
+    return <></>
+  }
   return <DayScheduleRender subjects={lessons}/>;
-
 }
 
 const mapStateToProps:MapStateToProps<{group:string, date: Date},any,StateType> = ({user, date}) => ({

@@ -30,16 +30,15 @@ export default class SubjectService {
     const lessons: Lesson[] = SubjectService.getLessons();
 
     const filtered = this.filterByDate();
+    console.log(filtered, 'filtered', this.day, this.week, this.subjects)
 
     filtered.forEach(
       ({
          type, subjectId: id, timeStart,
          subject: {name, teachers: teacher}
        }) => {
-        const nm = (type ? type + ". " : "") + name;
-        console.log(nm)
         lessons[SubjectService.LessonsTimesStarts[timeStart]].subjects.push({
-          name: nm,
+          name: (type ? type + ". " : "") + name,
           teacher,
           id
         })
@@ -48,7 +47,9 @@ export default class SubjectService {
 
     lessons.forEach(lesson => {
       lesson.empty = !Boolean(lesson.subjects.length)
-    })
+    });
+
+    console.log(lessons, 'result')
 
     return lessons;
   }

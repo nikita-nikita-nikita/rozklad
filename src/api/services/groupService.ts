@@ -14,7 +14,7 @@ export class GroupService{
     // SAVE
     public saveGroup = (group:string) => {
         localStorage.setItem('group', group);
-        this.saveRecentGroup(group)
+        if(group) this.saveRecentGroup(group);
     }
 
     private saveRecentGroup = (group:string) => {
