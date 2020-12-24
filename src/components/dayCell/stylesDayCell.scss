@@ -1,8 +1,13 @@
 .day-cell__container{
   list-style: none;
   width: 250px;
-  height: 133px;
-  min-height: 133px;
+  height: 100px;
+  transition: .2s;
+  z-index: 9999;
+  &:hover{
+    cursor: pointer;
+    transform: translateZ(5px);
+  }
 }
 
 .day-cell{

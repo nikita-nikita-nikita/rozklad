@@ -19,6 +19,11 @@ const dispatchDate = (dispatch: Dispatch, newDate: Date) =>
     payload: newDate
   });
 
+export const setDate = (date: Date) => (dispatch: Dispatch, getState: () => StateType) => {
+  if(getState().date.date.getTime() === date.getTime()) return;
+  dispatchDate(dispatch, date);
+}
+
 export const incrementMonth = () => (dispatch: Dispatch, getState: () => StateType) =>
   dispatchDate(dispatch, getChangedDate(getState, 'Month', 1));
 

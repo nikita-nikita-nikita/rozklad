@@ -28,15 +28,15 @@ const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decr
 
   // const scroll = (vector: 1|-1|0|2|-2, behavior: "smooth"|"auto" = "smooth") => {
   //   scrollRef.current.scrollTo({
-  //     top: 133*vector,
+  //     top: 100*vector,
   //     behavior
   //   });
   // }
 
   const onWheel = ({deltaY}: WheelEvent<HTMLDivElement>) => {
-    if (deltaY > 0) {
+    if (deltaY > 20) {
       incrementDate();
-    } else {
+    } else if(deltaY < -20) {
       decrementDate();
     }
   }
@@ -45,6 +45,9 @@ const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decr
 
   return (
     <div className="vertical-scroll">
+      <button className="vertical-scroll__button" onClick={decrementDate}>
+        <div className="vertical-scroll__control-arrow arrow-up"/>
+      </button>
       <div className="vertical-scroll-wrap" onWheel={onWheel} ref={scrollRef}>
         <div className="vertical-scroll__pointer"/>
         {
@@ -53,6 +56,9 @@ const VerticalScroll: React.FC<VerticalScrollType> = ({date, incrementDate, decr
           ))
         }
       </div>
+      <button className="vertical-scroll__button" onClick={incrementDate}>
+        <div className="vertical-scroll__control-arrow arrow-down"/>
+      </button>
     </div>
   )
 };

@@ -2,17 +2,52 @@
   margin-right: auto;
 }
 .vertical-scroll-wrap{
-  height: 798px;
+  height: 600px;
   overflow: hidden;
-  // scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
   width: 330px;
+  perspective: 100px;
+  transform-style: preserve-3d;
+}
+
+.vertical-scroll__button{
+  border: none;
+  background: none;
+  padding: 0;
+  height: 20px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    cursor: pointer;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+
+.vertical-scroll__control-arrow{
+  border: solid #5E89FE;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 7px;
+  transition: .01s;
+  &:hover{
+    filter: brightness(50%);
+  }
+  &.arrow-up{
+    transform: rotate(-135deg);
+  }
+  &.arrow-down{
+    transform: rotate(45deg);
+  }
 }
 
 .vertical-scroll__pointer{
   position: absolute;
-  top: 400px;
+  top: 200px;
   width: 250px;
   height: 100px;
   background-color: rgba(196, 196, 196, 0.3);
