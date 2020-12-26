@@ -13,6 +13,22 @@ export default class DateService {
     return newDate;
   }
 
+  static monthNames = [
+    "Січень",
+    "Лютий",
+    "Березень",
+    "Квітень",
+    "Травень",
+    "Червень",
+    "Липень",
+    "Серпень",
+    "Вересень",
+    "Жовтень",
+    "Листопад",
+    "Грудень",
+  ]
+
+  static GetMonthName = (date:Date):string => DateService.monthNames[date.getMonth()]
 
   static weekdayNames = [
     ,

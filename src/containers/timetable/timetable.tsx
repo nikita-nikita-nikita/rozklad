@@ -4,11 +4,13 @@ import VerticalScroll from "../../components/verticalScroll";
 import DaySchedule from "../daySchedule";
 import SubjectService from "../../api/services/subjectService";
 import SubjectServiceContext from "../../api/context/subjectServiceContext";
+import Todolist from "../todolist";
+import Calendar from "../calendar";
 
 const Timetable:React.FC = () => {
   return (
     <>
-      <aside>
+      <aside className="timetable-aside left-timetable-aside">
         Aside
       </aside>
       <main className="timetable-days-navigator">
@@ -17,8 +19,9 @@ const Timetable:React.FC = () => {
           <DaySchedule/>
         </SubjectServiceContext>
       </main>
-      <aside>
-        Aside
+      <aside className="timetable-aside right-timetable-aside">
+        <Todolist/>
+        <Calendar/>
       </aside>
     </>
   )
