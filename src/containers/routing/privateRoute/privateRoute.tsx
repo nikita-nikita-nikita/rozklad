@@ -9,7 +9,7 @@ type PrivateRouteProps = {
 };
 
 const PrivateRoute:React.FC<PrivateRouteProps> = ({user, ...props}) =>
-    !user ? <Redirect to="/table"/> : <Route {...props}/>;
+    !user ? <Redirect to="/tableview"/> : <Route {...props}/>;
 
 const mapStateToProps:MapStateToProps<PrivateRouteProps,any,StateType> = ({user:{user}} )=> ({
     user

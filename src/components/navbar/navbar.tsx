@@ -1,23 +1,34 @@
 import React from "react";
 import "./navbarStyles.scss";
-import NavbarSlider from "./NavbarSlider";
-import NavbarDropDown from "./NavbarDropDown";
+import {Route} from "react-router-dom";
+import MonthSlider from "./MonthSlider";
+import WeekSlider from "./WeekSlider";
+import NavbarProfileDropDown from "./NavbarProfileDropDown";
+import PuzzleIcon from "../puzzleIcon";
 
-const Navbar: React.FC = () => {
-    return (
-        <nav className="header__navbar">
-            <NavbarSlider/>
-            <button className='header__navbar-btn'>
-                <svg className='header__navbar-icon' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M6 3C6 1.89543 6.89543 1 8 1C9.10457 1 10 1.89543 10 3V5H15V10H17C18.1046 10 19 10.8954 19 12C19 13.1046 18.1046 14 17 14H15V19H10V17C10 15.8954 9.10457 15 8 15C6.89543 15 6 15.8954 6 17V19H1V14H3C4.10457 14 5 13.1046 5 12C5 10.8954 4.10457 10 3 10H1V5H6V3Z"
-                        stroke="#5E89FE"/>
-                </svg>
-                Add
-            </button>
-            <NavbarDropDown/>
-        </nav>
-    )
-}
+const TimetableNavbar:React.FC = () => (
+  <>
+    <MonthSlider/>
+    <button className='header__navbar-btn'>
+      <PuzzleIcon className="header__navbar-icon"/>
+      Add
+    </button>
+  </>
+);
+const TableviewNavbar:React.FC = () => (
+  <>
+    <WeekSlider/>
+    <div/>
+  </>
+);
+
+const Navbar: React.FC = () => (
+    <nav className="header__navbar">
+      <Route path="/timetable" component={TimetableNavbar}/>
+      <Route path="/tableview" component={TableviewNavbar}/>
+      <NavbarProfileDropDown/>
+    </nav>
+  )
+
 
 export default Navbar;

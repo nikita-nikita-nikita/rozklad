@@ -17,7 +17,7 @@ type NavbarSliderType = {
     incrementMonth:()=>void,
     decrementMonth:()=>void,
 }
-const NavbarSlider:React.FC<NavbarSliderType> = ({date, incrementMonth, decrementMonth}) => {
+const MonthSlider:React.FC<NavbarSliderType> = ({date, incrementMonth, decrementMonth}) => {
     return <SmallSlider
         enumerated={monthsArr}
         index={date.getMonth()}
@@ -35,4 +35,4 @@ const mapDispatchToProps = {
     decrementMonth
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarSlider);
+export default connect(mapStateToProps, mapDispatchToProps)(MonthSlider);

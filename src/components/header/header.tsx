@@ -11,7 +11,7 @@ const Header:React.FC = () => {
                 <img height="100%" src={MopsLogo} alt='mops'/><p>mops.</p>
             </div>
             <Switch>
-                <Route path="/timetable" component={Navbar}/>
+                <Route path={["/timetable", "/tableview"]} component={Navbar}/>
             </Switch>
         </header>
     )
