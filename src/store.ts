@@ -27,7 +27,7 @@ const reducers = {
 const rootReducer = combineReducers(reducers);
 
 export type StateType = {
-    user:UserStateType,
+    user: UserStateType,
     date: DateStateType
 }
 
