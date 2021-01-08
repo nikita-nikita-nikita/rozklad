@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './NavbarDropDown.scss';
+import './NavbarProfileDropDown.scss';
 import {connect} from "react-redux";
 import {logOut} from "../../../reducers/userReducer/actions";
 import profile from '../../../assets/images/profile.jpg';

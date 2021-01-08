@@ -6,6 +6,16 @@
   padding: 10px;
 }
 
-//.react-calendar__navigation__arrow{
-//  display: none;
-//}
+.react-calendar__navigation__arrow{
+  display: none;
+}
+
+.react-calendar__navigation__label{
+  cursor: not-allowed!important;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

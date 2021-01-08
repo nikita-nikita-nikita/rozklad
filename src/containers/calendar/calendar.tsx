@@ -19,15 +19,11 @@ const tileDisabled = ({date, view}: { date: Date, view: string }): boolean => {
   return false
 }
 
-// @ts-ignore
-const logger = (...arg) => console.log(arg);
 
 const Calendar: React.FC<CalendarType> = ({date, setDate}) => {
 
-  const navigate = ({activeStartDate}: ViewCallbackProperties) => setDate(activeStartDate);
-
   return (
-    <ReactCalendar onActiveStartDateChange={navigate}
+    <ReactCalendar
                    formatMonthYear={(locale, date) => DateService.GetMonthName(date) + " " + date.getFullYear()}
                    formatMonth={(locale, date) => DateService.GetMonthName(date)}
                    tileDisabled={tileDisabled}
