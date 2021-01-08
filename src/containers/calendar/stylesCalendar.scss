@@ -1,0 +1,21 @@
+.calendar{
+  border: 1.5px solid #FFE985!important;
+  margin-top: 20px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.react-calendar__navigation__arrow{
+  display: none;
+}
+
+.react-calendar__navigation__label{
+  cursor: not-allowed!important;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

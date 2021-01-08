@@ -2,16 +2,17 @@ import React from "react";
 import {Route, Redirect} from "react-router-dom";
 import {connect, MapStateToProps} from "react-redux";
 import {StateType} from "../../../store";
+import { User } from "../../../reducers/userReducer/reducer";
 
 type PrivateRouteProps = {
-    group:string|null
+    user:User|null
 };
 
-const PrivateRoute:React.FC<PrivateRouteProps> = ({group, ...props}) =>
-    !group ? <Redirect to="/login"/> : <Route {...props}/>;
+const PrivateRoute:React.FC<PrivateRouteProps> = ({user, ...props}) =>
+    !user ? <Redirect to="/tableview"/> : <Route {...props}/>;
 
-const mapStateToProps:MapStateToProps<{group:string|null},any,StateType> = ({user} )=> ({
-    group :user.group
+const mapStateToProps:MapStateToProps<PrivateRouteProps,any,StateType> = ({user:{user}} )=> ({
+    user
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

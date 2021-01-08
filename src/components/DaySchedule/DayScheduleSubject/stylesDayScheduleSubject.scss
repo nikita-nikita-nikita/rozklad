@@ -1,0 +1,18 @@
+.day-schedule{
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  padding: 22px;
+  border-radius: 15px;
+  position: relative;
+  background-color: rgba(160, 186, 255, 0.21);
+}
+
+.day-schedule__time{
+  position: absolute;
+  bottom: calc(100% + 3px);
+  right: calc(100% + 3px);
+}
+
+.day-schedule--empty{
+  background: rgba(196, 196, 196, 0.3);
+}

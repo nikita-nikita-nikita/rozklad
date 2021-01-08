@@ -16,7 +16,6 @@ const SmallSlider:React.FC<NavbarSliderTypes> = (
         index}) => {
     const sliderRef = useRef() as React.MutableRefObject<HTMLDivElement>;
     useEffect(() => {
-        console.log(index)
         sliderRef.current.scrollTo(200*index,0);
     },[index]);
     const slideLeft = () => {

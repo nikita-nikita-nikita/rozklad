@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import GroupService from "../../api/services/groupService";
+import {GroupService} from "../../api/services/groupService";
 import {ActionTypes} from "./actionTypes";
 import {StateType} from "../../store";
 import {TelegramResponse} from "./reducer";
@@ -7,7 +7,6 @@ const {SET_GROUP, SET_USER} = ActionTypes;
 
 const setGroup = (group: string) =>
     async (dispatch: Dispatch, getState: () => StateType) => {
-    console.log(group);
         const groupService = new GroupService();
         groupService.saveGroup(group);
         dispatch({
@@ -15,6 +14,11 @@ const setGroup = (group: string) =>
             payload: group
         })
     }
+
+// its just set group to ""
+const logOut = () =>
+  async (dispatch: Dispatch, getState: () => StateType) => setGroup("")(dispatch, getState);
+
 // todo add redux-thunk action and change User type if that would be need
 const setUser = (user: TelegramResponse) => async (dispatch: Dispatch) => {
     dispatch({
@@ -26,5 +30,6 @@ const setUser = (user: TelegramResponse) => async (dispatch: Dispatch) => {
 
 export {
     setGroup,
-    setUser
+    setUser,
+    logOut
 }

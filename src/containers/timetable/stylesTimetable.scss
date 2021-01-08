@@ -1,0 +1,17 @@
+.timetable-page{
+  display: flex;
+  justify-content: space-around;
+}
+
+.timetable-days-navigator{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.timetable-aside{
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  align-items: center;
+}
