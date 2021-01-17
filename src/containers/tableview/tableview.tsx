@@ -11,7 +11,7 @@ const Table = styled.table`
   display: flex;
   flex-direction: column;
   width: 1000px;
-  margin-left: 100px;
+  margin: 0 auto;
   border-collapse: collapse;
 `;
 
