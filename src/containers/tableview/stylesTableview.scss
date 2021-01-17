@@ -1,0 +1,16 @@
+.tableview{
+  border: rgba(94,137,254,0.15);
+}
+
+.table-row-head{
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.table-cell{
+  width: 150px;
+  box-sizing: border-box;
+  &:first-child{
+    width: 30px;
+  }
+}

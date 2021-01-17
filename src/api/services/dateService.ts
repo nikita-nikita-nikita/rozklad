@@ -40,6 +40,16 @@ export default class DateService {
     "сб"
   ]
 
+  static weekdayNamesFull = [
+      ,
+      "Понеділок",
+      "Вівторок",
+      "Середа",
+      "Четвер",
+      "П'ятниця",
+      "Субота"
+  ]
+
   static getWeekdayName = (day: number) => DateService.weekdayNames[day];
 
   getDay = (date: Date, isActive: boolean = false): Day => ({date, isActive});
@@ -54,7 +64,7 @@ export default class DateService {
       else returnedDays.unshift({date:new Date(currentDate.getTime())});
     }
     return returnedDays;
-  }
+  };
 
   public getDisplayedDays = (): Day[] => [
     ...this.getDaysAroundActive(2,-1),

@@ -9,6 +9,7 @@ import ProtectedRoute from "./protectedRoute";
 import PublicRoute from "./publicRoute";
 import LoginPage from "../../pages/loginPage";
 import TimetablePage from "../../pages/timetablePage";
+import TableviewPage from "../../pages/tableview";
 
 const Routing:React.FC = () => {
     return (
@@ -17,7 +18,7 @@ const Routing:React.FC = () => {
                     <Redirect to="/timetable"/>
                 </Route>
                 <Route path="/timetable" component={TimetablePage}/>
-                <ProtectedRoute path="/tableview" component={() => <h1>Table page</h1>}/>
+                <Route path="/tableview" component={TableviewPage}/>
                 <PublicRoute path="/login" component={LoginPage}/>
             </Switch>
     )
