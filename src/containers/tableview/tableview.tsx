@@ -10,7 +10,7 @@ import DateService from "../../api/services/dateService";
 const Table = styled.table`
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  width: 80%;
   margin: 0 auto;
   border-collapse: collapse;
 `;
@@ -33,10 +33,10 @@ const TimeStart = styled.span`
 
 const TD = styled.td`
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
   width: 160%;
-
   &:first-of-type {
     width: 30%;
     position: relative;
