@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {connect, MapStateToProps} from "react-redux";
 import {StateType} from "../../store";
 import {apiAxios} from "../../config/axiosConfig";
-import {Lesson, Subject} from "../daySchedule/dayShedule";
+import { Subject} from "../daySchedule/dayShedule";
 import {useSubjectService} from "../../api/context/subjectServiceContext";
 import DateService from "../../api/services/dateService";
 
