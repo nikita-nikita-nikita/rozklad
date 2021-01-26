@@ -7,6 +7,7 @@ import {StateType} from "../../store";
 import TelegramButton from "../../components/TelegramButton"
 import {TelegramResponse} from "../../reducers/userReducer/reducer";
 import {useGroupService} from "../../api/context/groupContext";
+import GoogleButton from "../../components/googleButton";
 
 type LoginPageType = {
     setGroup: (group:string) => void,
@@ -43,6 +44,7 @@ const LoginPage: React.FC<LoginPageType> = ({setGroup, setUser}) => {
                         lang="en"
                         dataOnauth={onAuth}
                     />
+                    <GoogleButton dataOnauth={console.log}/>
                     <form className="login-page__group-choose-block" onSubmit={submitGroup}>
                         <div className="login-page__input-block">
                             <input
