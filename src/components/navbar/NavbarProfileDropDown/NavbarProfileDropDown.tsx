@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './NavbarProfileDropDown.scss';
+import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
 import {logOut} from "../../../reducers/userReducer/actions";
 import profile from '../../../assets/images/profile.jpg';
@@ -9,6 +10,7 @@ type NavbarDropDownType = {
 }
 
 const NavbarDropDown: React.FC<NavbarDropDownType> = ({logOut}) => {
+    const history = useHistory()
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div id='header__navbar-dropdown'
@@ -39,7 +41,7 @@ const NavbarDropDown: React.FC<NavbarDropDownType> = ({logOut}) => {
                         change telegram
                     </button>
 
-                    <button>
+                    <button >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 5H21V21H3V5Z" stroke="#FA742B" stroke-linejoin="round"/>

@@ -13,11 +13,26 @@ const getChangedDate = (getState: () => StateType, method: 'Month' | 'Date', n: 
   return newDate;
 }
 
-const dispatchDate = (dispatch: Dispatch, newDate: Date) =>
-  dispatch({
-    type: SET_DATE,
-    payload: newDate
-  });
+const dateLimits = {
+    lower: new Date('01.01.2021'),
+    upper: new Date('July 01, 2021')
+}
+
+const validateDate = (date: Date):boolean => {
+    if(date.getTime()<dateLimits.lower.getTime()||date.getTime()>dateLimits.upper.getTime()) {
+        return false;
+    }
+    return true;
+}
+
+const dispatchDate = (dispatch: Dispatch, newDate: Date) => {
+    if(validateDate(newDate)){
+        dispatch({
+            type: SET_DATE,
+            payload: newDate
+        });
+    }
+}
 
 export const setDate = (date: Date) => (dispatch: Dispatch, getState: () => StateType) => {
   if(getState().date.date.getTime() === date.getTime()) return;

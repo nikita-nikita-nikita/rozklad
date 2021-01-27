@@ -5,14 +5,16 @@ import {StateType} from "../../../store";
 import { User } from "../../../reducers/userReducer/reducer";
 
 type PrivateRouteProps = {
-    user:User|null
+    user:User|null,
+    group: string
 };
 
-const PrivateRoute:React.FC<PrivateRouteProps> = ({user, ...props}) =>
-    !user ? <Redirect to="/tableview"/> : <Route {...props}/>;
+const PrivateRoute:React.FC<PrivateRouteProps> = ({user, group, ...props}) =>
+    !user && group ? <Redirect to="/tableview"/> : <Route {...props}/>;
 
-const mapStateToProps:MapStateToProps<PrivateRouteProps,any,StateType> = ({user:{user}} )=> ({
-    user
+const mapStateToProps:MapStateToProps<PrivateRouteProps,any,StateType> = ({user:{user, group}} )=> ({
+    user,
+    group
 });
 
 export default connect(mapStateToProps)(PrivateRoute);
