@@ -7,7 +7,9 @@ import {StateType} from "../../store";
 import TelegramButton from "../../components/TelegramButton"
 import {TelegramResponse} from "../../reducers/userReducer/reducer";
 import {useGroupService} from "../../api/context/groupContext";
-import GoogleButton from "../../components/googleButton";
+import {useStudentService} from "../../api/context/studentContext";
+import {GoogleLoginButton} from "../../components/Google";
+
 
 type LoginPageType = {
     setGroup: (group:string) => void,
@@ -19,12 +21,17 @@ const LoginPage: React.FC<LoginPageType> = ({setGroup, setUser}) => {
     const [inputValue, setInputValue] = useState<string>("");
     const [hintClicked, setHintClicked] = useState<boolean>(false);
     const groupService = useGroupService();
+    const studentService = useStudentService();
     useEffect(() => {
         groupService.getGroups().then(({data}) => setGroups(data))
     }, []);
-    const onAuth= (user : TelegramResponse)=>{
+    const onAuthTelegram= (user : TelegramResponse)=>{
         // request to API
     }
+    const onAuthGoogle = async (res:any )=>{
+        await studentService.authGoogleRequest(res.tokenId)
+    }
+    // const onAuthGoogle = (user : )
     const submitGroup = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!groups.includes(inputValue)) alert("Ведіть валідну групу");
@@ -42,9 +49,9 @@ const LoginPage: React.FC<LoginPageType> = ({setGroup, setUser}) => {
                         cornerRadius={10}
                         usePic={true}
                         lang="en"
-                        dataOnauth={onAuth}
+                        dataOnauth={onAuthTelegram}
                     />
-                    <GoogleButton dataOnauth={console.log}/>
+                    <GoogleLoginButton onSucces={(res:any)=>onAuthGoogle(res)} onFailure={console.log}/>
                     <form className="login-page__group-choose-block" onSubmit={submitGroup}>
                         <div className="login-page__input-block">
                             <input
